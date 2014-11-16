@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>IASD</title>
+	<link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+	
+	
+	<script src="jquery-1.11.1.min.js"></script>
+
+	<script src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<style>
+	
+	.deploy-sidebar {
+	background-position: 14px 14px;
+	background-image: url(jquery.mobile-1.4.5/images/content-deploy.png);
+	background-repeat: no-repeat;
+	background-size: 14px 14px;
+	width: 20px;
+	height: 20px;
+	top: 0px;
+	left: 0px;
+	}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$("#send").click(function() { //When trigger is clicked...
+            var optionTexts = [];
+            $("#thelist").each(function() { optionTexts.push($(this).text()) });
+            var text = '"' + optionTexts.join('"<br/> "') + '"';
+
+            $("#result").append(text);
+
+			});
+			
+			var song='';
+			
+						
+			var groupSelectHandler = function () {
+			$("#groupSelectList").listview().show()
+			$("#groupSelectList").listview("refresh");
+			$("input[data-type='search']").unbind('keyup', groupSelectHandler);
+			}
+			
+			function play_coros(id_song)
+			{
+				//alert(id_song+'.mp3');
+				id_song='../'+id_song+'.mp3';
+				audio_player.src = id_song; 
+				audio_player.play();
+				
+				
+			}
+			
+			$('#groupSelectList').children('li').on('click', function () {
+				
+				song=$(this).text();
+				$("input[data-type='search']").val(song);
+				$("input[data-type='search']").val();
+				$("#groupSelectList").listview().hide();
+				$("input[data-type='search']").bind('keyup', groupSelectHandler);
+				
+				//song='A_ÉL_LE_DIRÉ_MIS_PENAS';
+				var res = song.split(".");				
+				var song=res[1];
+				
+				song=song.replace(/ /g,'_');
+				song=song.replace(/¿/g,'');
+				song=song.replace('?','');
+				song=song.replace(/:/g,'');
+				
+				song=song.substring(1,100);
+				
+				//alert(song);				
+				
+				play_coros(song);
+			});
+		});
+	
+	//jQuery listview - how to hide list when item is clicked	
+	/*	
+		  var groupSelectHandler = function () {
+        $("#groupSelectList").listview().show()
+        $("#groupSelectList").listview("refresh");
+        $("input[data-type='search']").unbind('keyup', groupSelectHandler);
+    }
+	
+	
+    $(document).ready(function () {
+        $("#groupSelectList").listview({
+            filter: true,
+            filterPlaceholder: ''
+
+        });
+
+        $('#groupSelectList').children('li').on('click', function () {
+            $('#groupName').val($(this).text());
+            $("input[data-type='search']").val($(this).text());
+            $("#groupSelectList").listview().hide();
+            $("input[data-type='search']").bind('keyup', groupSelectHandler);
+        });
+    });
+	*/
+	</script>
+</head>
+
+<body>
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>CANTEMOS LOS COROS</h1>
+		<a href="#pageone" class="deploy-sidebar"></a>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<!--<embed src="../CANTEMOS_LOS_COROS.pdf" width="500" height="375">-->
+		<p>Versión Digital .Pdf: <a href="../CANTEMOS_LOS_COROS.pdf" target="_blank">Imprimir</a></p>
+		<p>Coros .Mp3: <a href="../CANTEMOS_LOS_COROS.pdf" target="_blank">Descargar</a></p>
+		<div align="center">
+		<audio id="audio_player" controls>  
+		<source src="" type="audio/mpeg">
+		Your browser does not support the audio element.
+		</audio>
+		</div>
+		
+		
+		
+<ul id="groupSelectList" data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Search Music..." data-inset="true">
+    <li><a href="#">1. A ÉL LE DIRÉ MIS PENAS</a></li>
+	<li><a href="#">2. A JESUCRISTO VEN</a></li>
+	<li><a href="#">3. A LA VICTORIA</a></li>
+	<li><a href="#">4. A QUIEN IRÉ</a></li>
+	<li><a href="#">5. A SOLAS CON JESÚS</a></li>
+	<li><a href="#">6. A TI</a></li>
+	<li><a href="#">7. A UN NUEVO DÍA</a></li>
+	<li><a href="#">8. ABEJAS Y MARIPOSAS</a></li>
+	<li><a href="#">9. ACUDE A CRISTO</a></li>
+	<li><a href="#">10. ADELANTE, CON VALOR</a></li>
+	<li><a href="#">11. AL COMENZAR LA SEMANA</a></li>
+	<li><a href="#">12. ALABARÉ</a></li>
+	<li><a href="#">13. ALABEMOS A JESÚS</a></li>
+	<li><a href="#">14. ALABEMOS AL SEÑOR</a></li>
+	<li><a href="#">15. ALEGRES Y CONTENTOS</a></li>
+	<li><a href="#">16. ALTO ESCÚCHAME</a></li>
+	<li><a href="#">17. AMEMONOS DE CORAZON</a></li>
+	<li><a href="#">18. AMIGO ¿AMAS TU A CRISTO?</a></li>
+	<li><a href="#">19. AMOR</a></li>
+	<li><a href="#">20. ANDANDO CON MI CRISTO</a></li>
+	<li><a href="#">21. ÁNGELES</a></li>
+	<li><a href="#">22. BELLAS MANSIONES</a></li>
+	<li><a href="#">23. BELLAS MANSIONES CELESTIALES</a></li>
+	<li><a href="#">24. BENDITO SEA JEHOVÁ, LA ROCA</a></li>
+	<li><a href="#">25. BIENVENIDA DA JESÚS</a></li>
+	<li><a href="#">26. BRILLA JESUS</a></li>
+	<li><a href="#">27. BUSCA PRIMERO</a></li>
+	<li><a href="#">28. CADA DIA CON CRISTO</a></li>
+	<li><a href="#">29. CAMBIAME</a></li>
+	<li><a href="#">30. CAMINANDO</a></li>
+	<li><a href="#">31. CANCIÓN DE ALABANZA</a></li>
+	<li><a href="#">32. CANTA ALEGRÍAS</a></li>
+	<li><a href="#">33. CANTA ALEGRÍAS AL SEÑOR</a></li>
+	<li><a href="#">34. CANTAD ALEGRES A DIOS</a></li>
+	<li><a href="#">35. CANTANDO EN EL CAMINO AL CIELO</a></li>
+	<li><a href="#">36. CANTO DE ALEGRÍA</a></li>
+	<li><a href="#">37. CON CRISTO EN TU BARCO</a></li>
+	<li><a href="#">38. CON CRISTO, CON CRISTO</a></li>
+	<li><a href="#">39. CONFÍO YO</a></li>
+	<li><a href="#">40. CONOCERLE A EL</a></li>
+	<li><a href="#">41. CONOCERLE ES AMARLE</a></li>
+	<li><a href="#">42. CONTENTO ESTOY EN MI CORAZÓN</a></li>
+	<li><a href="#">43. CONTIGO ESTOY</a></li>
+	<li><a href="#">44. CRISTO</a></li>
+	<li><a href="#">45. CRISTO ES LA PEÑA DE HOREB</a></li>
+	<li><a href="#">46. CRISTO ROMPE LAS CADENAS</a></li>
+	<li><a href="#">47. CRISTO SI COMPRENDE TODA MI ANSIEDAD</a></li>
+	<li><a href="#">48. CRISTO VIENE</a></li>
+	<li><a href="#">49. CRUZANDO EL VALLE</a></li>
+	<li><a href="#">50. CUAN GLORIOSA SERÁ LA MANAÑA</a></li>
+	<li><a href="#">51. CUANDO EL PUEBLO DE DIOS ORA</a></li>
+	<li><a href="#">52. CUANDO YO ESTOY TRISTE</a></li>
+	<li><a href="#">53. DAME LA MANO</a></li>
+	<li><a href="#">54. DAME LA VICTORIA</a></li>
+	<li><a href="#">55. DAME UN NUEVO CORAZÓN</a></li>
+	<li><a href="#">56. DE MAÑANA</a></li>
+	<li><a href="#">57. DEJA QUE DIOS SEA DIOS</a></li>
+	<li><a href="#">58. DEMOS GRACIAS</a></li>
+	<li><a href="#">59. DÍA TAN GRANDE</a></li>
+	<li><a href="#">60. DIOS ES AMOR</a></li>
+	<li><a href="#">61. DIOS ESTÁ AQUÍ</a></li>
+	<li><a href="#">62. DIOS HA SIDO TAN BUENO CONMIGO</a></li>
+	<li><a href="#">63. DIOS MIO ERES TÚ</a></li>
+	<li><a href="#">64. DONES DE JESÚS</a></li>
+	<li><a href="#">65. DULCE REFUGIO</a></li>
+	<li><a href="#">66. EL ALFARERO</a></li>
+	<li><a href="#">67. EL AMOR DE DIOS</a></li>
+	<li><a href="#">68. EL ES JEHOVÁ, EL SEÑOR</a></li>
+	<li><a href="#">69. EL ES MI VIDA</a></li>
+	<li><a href="#">70. EL ESPÍRITU DE DIOS</a></li>
+	<li><a href="#">71. EL ESPÍRITU DE DIOS</a></li>
+	<li><a href="#">72. EL PUEBLO QUE A SU DIOS CONOCE</a></li>
+	<li><a href="#">73. EL PUEDE</a></li>
+	<li><a href="#">74. EL SALVADOR ESPERA</a></li>
+	<li><a href="#">75. EL SEÑOR ME LLENÓ DE GOZO</a></li>
+	<li><a href="#">76. EN EL HOGAR</a></li>
+	<li><a href="#">77. EN MI ALMA SUENA UN CANTAR</a></li>
+	<li><a href="#">78. EN TU JUVENTUD</a></li>
+	<li><a href="#">79. ENCIENDE UNA LUZ</a></li>
+	<li><a href="#">80. ENCONTRÉ REFUGIO</a></li>
+	<li><a href="#">81. ENTREGA TOTAL</a></li>
+	<li><a href="#">82. ERES ESPECIAL</a></li>
+	<li><a href="#">83. ERRANTE VOY</a></li>
+	<li><a href="#">84. ES HORA DE SER DE JESÚS</a></li>
+	<li><a href="#">85. ES TIEMPO</a></li>
+	<li><a href="#">86. ESCUCHA SEÑOR MI ORACIÓN</a></li>
+	<li><a href="#">87. ESTARÉ EN EL CIELO</a></li>
+	<li><a href="#">88. ESTOY ALEGRE</a></li>
+	<li><a href="#">89. ESTOY CANTANDO ALEGRE</a></li>
+	<li><a href="#">90. ESTOY CONTENTO PORQUE SOY DE CRISTO</a></li>
+	<li><a href="#">91. EXPERIMENTA SU AMOR</a></li>
+	<li><a href="#">92. FE</a></li>
+	<li><a href="#">93. FIDELIDAD A JESÚS</a></li>
+	<li><a href="#">94. FIEL YO SERÉ</a></li>
+	<li><a href="#">95. FIJA TUS OJOS</a></li>
+	<li><a href="#">96. GOZO TENGO EN MI ALMA HOY</a></li>
+	<li><a href="#">97. GRACIAS</a></li>
+	<li><a href="#">98. GRACIAS POR TU AMOR</a></li>
+	<li><a href="#">99. GRANDES Y MARAVILLOSAS</a></li>
+	<li><a href="#">100. GUARDANOS HOY</a></li>
+	<li><a href="#">101. HABLA A TU DIOS</a></li>
+	<li><a href="#">102. HABLANDO CON JESÚS</a></li>
+	<li><a href="#">103. HAY PODER</a></li>
+	<li><a href="#">104. HAY UN DULCE ESPÍRITU</a></li>
+	<li><a href="#">105. HE AQUÍ NUESTRO DIOS</a></li>
+	<li><a href="#">106. HE DECIDIDO SEGUIR A CRISTO</a></li>
+	<li><a href="#">107. HEREDAD DE MI SEÑOR</a></li>
+	<li><a href="#">108. ¿HICISTE ORACIÓN?</a></li>
+	<li><a href="#">109. HIMNO A LA BANDERA CRISTIANA</a></li>
+	<li><a href="#">110. HIMNO A LA BIBLIA</a></li>
+	<li><a href="#">111. HOGAR JUNTO A EL</a></li>
+	<li><a href="#">112. HOY VEN A MI ALMA</a></li>
+	<li><a href="#">113. JAMÁS TE DEJARÁ</a></li>
+	<li><a href="#">114. JEHOVÁ ES MI PASTOR</a></li>
+	<li><a href="#">115. JEHOVÁ TE PASTOREARÁ</a></li>
+	<li><a href="#">116. JESÚS ES LA RESPUESTA</a></li>
+	<li><a href="#">117. JESÚS ME DIO SU LIBERTAD</a></li>
+	<li><a href="#">118. JESÚS MI CAPITÁN</a></li>
+	<li><a href="#">119. JESÚS NUESTRO MODELO</a></li>
+	<li><a href="#">120. JESÚS SU VIDA DIO POR MI</a></li>
+	<li><a href="#">121. JUAN 3:16</a></li>
+	<li><a href="#">122. JUNTO A TI, SEÑOR</a></li>
+	<li><a href="#">123. JUNTOS EN LA ETERNIDAD</a></li>
+	<li><a href="#">124. LA BATALLA DEL SEÑOR</a></li>
+	<li><a href="#">125. LA BIBLIA</a></li>
+	<li><a href="#">126. LA ESPERANZA ES JESÚS</a></li>
+	<li><a href="#">127. LA FUENTE VIVA</a></li>
+	<li><a href="#">128. LA IGLESIA SIGUE CAMINANDO</a></li>
+	<li><a href="#">129. LA PÉRDIDAD MAS GRANDE</a></li>
+	<li><a href="#">130. LA SANGRE DE CRISTO JESÚS</a></li>
+	<li><a href="#">131. LA SUPER MISIÓN</a></li>
+	<li><a href="#">132. LAS CALLES DE ORO</a></li>
+	<li><a href="#">133. LEVANTA TU VIDA</a></li>
+	<li><a href="#">134. LOS COLORES DEL ARCO IRIS</a></li>
+	<li><a href="#">135. LOS TALENTOS</a></li>
+	<li><a href="#">136. MANSIÓN GLORIOSA</a></li>
+	<li><a href="#">137. MARANATHA</a></li>
+	<li><a href="#">138. MARCHA, OH JUVENTUD</a></li>
+	<li><a href="#">139. MAS ALLÁ DEL SOL</a></li>
+	<li><a href="#">140. MAYORDOMOS DEL  SEÑOR</a></li>
+	<li><a href="#">141. ME PREPARO EL VIERNES</a></li>
+	<li><a href="#">142. MI CRISTO, MI REY</a></li>
+	<li><a href="#">143. MI DIOS ES TAN GRANDE</a></li>
+	<li><a href="#">144. MI FAMILIA</a></li>
+	<li><a href="#">145. MI ORACIÓN</a></li>
+	<li><a href="#">146. MI PENSAMIENTO</a></li>
+	<li><a href="#">147. MI TALENTO PARA JESÚS</a></li>
+	<li><a href="#">148. MIS MANITAS</a></li>
+	<li><a href="#">149. MISERICORDIA Y JUICIO CANTARÉ</a></li>
+	<li><a href="#">150. MORE EN MI LA BELLEZA</a></li>
+	<li><a href="#">151. NECESITO DE CRISTO EL SALVADOR</a></li>
+	<li><a href="#">152. NOCHE Y DÍA</a></li>
+	<li><a href="#">153. NO DESISTID</a></li>
+	<li><a href="#">154. NO HAY DIOS TAN GRANDE COMO TU</a></li>
+	<li><a href="#">155. NO HAY SENDA SINO EL</a></li>
+	<li><a href="#">156. NO ME SIENTO SOLO</a></li>
+	<li><a href="#">157. NO TE PIERDAS DOS MUNDOS</a></li>
+	<li><a href="#">158. NO TENGO TEMOR</a></li>
+	<li><a href="#">159. NUESTRA EDIFICACIÓN</a></li>
+	<li><a href="#">160. NUNCA SE APARTARÁ</a></li>
+	<li><a href="#">161. OH SI SOY FELIZ</a></li>
+	<li><a href="#">162. PADRE ÚNENOS</a></li>
+	<li><a href="#">163. PALABRAS BASTAN</a></li>
+	<li><a href="#">164. ¿POR QUE TE AFANAS HOY?</a></li>
+	<li><a href="#">165. POR TU GRACIA Y AMOR</a></li>
+	<li><a href="#">166. POR UN MUNDO MEJOR</a></li>
+	<li><a href="#">167. PRESIENTO</a></li>
+	<li><a href="#">168. PUEDES CONFIAR</a></li>
+	<li><a href="#">169. PUEDO CANTAR</a></li>
+	<li><a href="#">170. QUE BIEN, QUE MARAVILLOSO</a></li>
+	<li><a href="#">171. QUE BONITO ES</a></li>
+	<li><a href="#">172. QUE FÁCIL ES CONFIAR</a></li>
+	<li><a href="#">173. QUE FELICIDAD</a></li>
+	<li><a href="#">174. QUE GLORIOSO ES ANDAR CON EL</a></li>
+	<li><a href="#">175. QUE PLACER</a></li>
+	<li><a href="#">176. QUÉDATE</a></li>
+	<li><a href="#">177. QUIERO IR AL CIELO</a></li>
+	<li><a href="#">178. REAVIVAMIENTO</a></li>
+	<li><a href="#">179. REFUGIO EN LA TORMENTA</a></li>
+	<li><a href="#">180. REGOCIJAOS EN CRISTO</a></li>
+	<li><a href="#">181. RENUÉVAME</a></li>
+	<li><a href="#">182. SALVADOR VEN A MI</a></li>
+	<li><a href="#">183. SANTO ESPÍRITU LLENA MI VIDA</a></li>
+	<li><a href="#">184. SANTO, SANTO</a></li>
+	<li><a href="#">185. SÉ FIEL</a></li>
+	<li><a href="#">186. SENDAS DIOS HARÁ</a></li>
+	<li><a href="#">187. SEÑOR TU ME LLAMAS</a></li>
+	<li><a href="#">188. SERVIR</a></li>
+	<li><a href="#">189. SI COMENZAMOS A ORAR</a></li>
+	<li><a href="#">190. SI EN ESTA VIDA ANDAS</a></li>
+	<li><a href="#">191. SI NO FUERA POR TU GRACIA</a></li>
+	<li><a href="#">192. SI TU DESEAS TENER FELICIDAD</a></li>
+	<li><a href="#">193. SIEMPRE PUNTUALES</a></li>
+	<li><a href="#">194. SOLO EL PODER DE DIOS</a></li>
+	<li><a href="#">195. SOLO NO ESTOY</a></li>
+	<li><a href="#">196. SOY FELIZ</a></li>
+	<li><a href="#">197. TAL COMO DIJO FUE</a></li>
+	<li><a href="#">198. TAL COMO SOY</a></li>
+	<li><a href="#">199. TE CANSA TU PESO</a></li>
+	<li><a href="#">200. TE DA LA PAZ</a></li>
+	<li><a href="#">201. TE EXALTARÉ</a></li>
+	<li><a href="#">202. TE PIDO LA PAZ</a></li>
+	<li><a href="#">203. TE QUIERO MUCHO</a></li>
+	<li><a href="#">204. TEN MISERICORDIA</a></li>
+	<li><a href="#">205. TENGO PAZ COMO UN RÍO</a></li>
+	<li><a href="#">206. TIERRA DE PALESTINA</a></li>
+	<li><a href="#">207. TOCOME LA MANO DEL SEÑOR</a></li>
+	<li><a href="#">208. TODO A DIOS EN ORACIÓN</a></li>
+	<li><a href="#">209. TODO EN EL ALTAR</a></li>
+	<li><a href="#">210. TODO LO PUEDO EN CRISTO</a></li>
+	<li><a href="#">211. TODO LO PUEDO EN CRISTO</a></li>
+	<li><a href="#">212. TODO VA BIEN CON JESÚS</a></li>
+	<li><a href="#">213. TODO YA CAMBIÓ</a></li>
+	<li><a href="#">214. TOMA MI CORAZÓN</a></li>
+	<li><a href="#">215. TOMADO DE LA MANO</a></li>
+	<li><a href="#">216. TRÁELAS</a></li>
+	<li><a href="#">217. TU PRESENCIA</a></li>
+	<li><a href="#">218. UN CANTO DE FE</a></li>
+	<li><a href="#">219. UN DÍA COMO HOY</a></li>
+	<li><a href="#">220. UN PALACIO TENGO</a></li>
+	<li><a href="#">221. UNA COSA SE</a></li>
+	<li><a href="#">222. UNA ESPERANZA</a></li>
+	<li><a href="#">223. UNA LINDA CANCIÓN</a></li>
+	<li><a href="#">224. UNA MIRADA DE FE</a></li>
+	<li><a href="#">225. ÚNENOS EN UN SOLO ESÍRITU</a></li>
+	<li><a href="#">226. UNIDOS EN VERDAD</a></li>
+	<li><a href="#">227. VASO DE HONRA</a></li>
+	<li><a href="#">228. VENGO A TI</a></li>
+	<li><a href="#">229. VIDA ABUNDANTE EN CRISTO</a></li>
+	<li><a href="#">230. VINE A ADORAR A DIOS</a></li>
+	<li><a href="#">231. VIVE SIN TEMOR</a></li>
+	<li><a href="#">232. VIVÍA EN TINIEBLAS</a></li>
+	<li><a href="#">233. VIVIFICA A TU PUEBLO</a></li>
+	<li><a href="#">234.  VOLVÍ A JESÚS</a></li>
+	<li><a href="#">235. YO ALABARÉ</a></li>
+	<li><a href="#">236. YO NO ME OLVIDÉ DE TI</a></li>
+	<li><a href="#">237. YO QUIERO BRILLAR</a></li>
+	<li><a href="#">238. YO QUIERO LO QUE QUIERAS</a></li>
+	<li><a href="#">239. YO QUIERO MAS Y MAS DE CRISTO</a></li>
+	<li><a href="#">240. YO SOY EL CAMINO LA VERDAD Y LA VIDA</a></li>
+	<li><a href="#">241. YO SOY TESTIGO</a></li>
+	<li><a href="#">242. YO TE SIRVO</a></li>
+	<li><a href="#">243. YO TENGO GOZO</a></li>
+	<li><a href="#">244. YO TENGO GOZO, ES TAN HERMOSO</a></li>
+	<li><a href="#">245. YO VEO A DIOS</a></li>
+	<li><a href="#">246. YO VIVO</a></li>
+	<li><a href="#">247. ZAQUEO</a></li>
+
+</ul>
+				
+
+	
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>MINISTERIO JUVENIL EDEN</h4>
+	</div><!-- /footer -->	
+</div><!-- /page -->
+
+<div data-role="page" id="pageone">
+
+	<div data-role="header">
+		<h1>CANTEMOS LOS COROS</h1>
+		<a href="#" data-rel="back" class="deploy-sidebar"></a>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<p>El proyecto Cantemos Los Coros en versión digital se encuentra en desarrollo.</p>
+		<p>En caso que no encuentres la música de algún canto, por favor envíanos el archivo mp3 al siguiente email:</p>
+		<p> sahaca@outlook.com</p>
+		<p>Muchas Gracias!</p>
+		
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>MINISTERIO JUVENIL EDEN</h4>
+	</div><!-- /footer -->
+</div>
+
+</body>
+</html>
